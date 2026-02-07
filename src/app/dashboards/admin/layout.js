@@ -126,7 +126,7 @@ export default function AdminLayout({ children }) {
         </nav>
 
         {/* User Info & Logout */}
-        <div className="p-4 border-t border-green-700">
+        <div className="p-4 border-t border-green-800">
           {sidebarOpen && (
             <div className="mb-3">
               <p className="text-sm text-green-200">Signed in as</p>
