@@ -76,7 +76,7 @@ export default function LoginPage() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-900"
               placeholder="Enter your email"
             />
           </div>
@@ -92,7 +92,7 @@ export default function LoginPage() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-900"
               placeholder="Enter your password"
             />
           </div>
@@ -101,7 +101,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition duration-200"
+            className="w-full bg-green-600 hover:bg-green-800 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition duration-200"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
@@ -113,7 +113,7 @@ export default function LoginPage() {
             Don't have an account?{" "}
             <button
               onClick={() => router.push("/auth/signup")}
-              className="text-blue-600 hover:text-blue-700 font-semibold"
+              className="text-green-800 hover:text-green-600 font-semibold"
             >
               Sign Up
             </button>

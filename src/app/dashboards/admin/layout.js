@@ -63,7 +63,7 @@ export default function AdminLayout({ children }) {
     { name: "Sections", path: "/dashboards/admin/sections", icon: "📑" },
     { name: "Subjects", path: "/dashboards/admin/subjects", icon: "📚" },
     { name: "Exams", path: "/dashboards/admin/exams", icon: "📝" },
-    { name: "Attendance", path: "/dashboards/admin/attendance", icon: "✅" },
+    { name: "Attendance", path: "/dashboards/admin/attendence", icon: "✅" },
   ];
 
   if (loading) {
@@ -82,17 +82,17 @@ export default function AdminLayout({ children }) {
       <aside
         className={`${
           sidebarOpen ? "w-64" : "w-20"
-        } bg-gradient-to-b from-blue-600 to-blue-800 text-white transition-all duration-300 flex flex-col`}
+        } bg-gradient-to-b from-green-600 to-green-800 text-white transition-all duration-300 flex flex-col`}
       >
         {/* Logo/Header */}
-        <div className="p-4 border-b border-blue-700">
+        <div className="p-4 border-b border-green-700">
           <div className="flex items-center justify-between">
             {sidebarOpen && (
               <h1 className="text-xl font-bold">SMS Admin</h1>
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-white hover:bg-blue-700 p-2 rounded"
+              className="text-white hover:bg-green-700 p-2 rounded"
             >
               {sidebarOpen ? "◀" : "▶"}
             </button>
@@ -110,8 +110,8 @@ export default function AdminLayout({ children }) {
                     href={item.path}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
                       isActive
-                        ? "bg-blue-700 text-white"
-                        : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                        ? "bg-green-700 text-white"
+                        : "text-green-100 hover:bg-green-700 hover:text-white"
                     }`}
                   >
                     <span className="text-xl">{item.icon}</span>
@@ -126,16 +126,16 @@ export default function AdminLayout({ children }) {
         </nav>
 
         {/* User Info & Logout */}
-        <div className="p-4 border-t border-blue-700">
+        <div className="p-4 border-t border-green-700">
           {sidebarOpen && (
             <div className="mb-3">
-              <p className="text-sm text-blue-200">Signed in as</p>
+              <p className="text-sm text-green-200">Signed in as</p>
               <p className="text-sm font-semibold truncate">{user.email}</p>
             </div>
           )}
           <button
             onClick={handleLogout}
-            className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition flex items-center justify-center gap-2"
+            className="w-full bg-white text-green-700 font-extrabold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2"
           >
             <span>🚪</span>
             {sidebarOpen && <span>Logout</span>}

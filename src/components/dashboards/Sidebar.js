@@ -24,7 +24,7 @@ const Sidebar = ({ activeItem, onItemClick, userRole }) => {
             onClick={() => onItemClick(item.id)}
             className={`w-full flex items-center px-6 py-3 text-left transition-colors ${
               activeItem === item.id
-                ? 'bg-blue-600 text-white'
+                ? 'bg-green-700 text-white'
                 : 'text-gray-300 hover:bg-gray-800 hover:text-white'
             }`}
           >

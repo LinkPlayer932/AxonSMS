@@ -31,7 +31,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500">
+    <div className="min-h-screen bg-gradient-to-br from-green-600 via-green-800 to-blue-600">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center text-white">
@@ -47,13 +47,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <button
               onClick={() => router.push("/auth/login")}
-              className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-full text-lg shadow-lg transition duration-300 transform hover:scale-105"
+              className="bg-white text-green-800 hover:bg-gray-100 font-bold py-4 px-8 rounded-full text-lg shadow-lg transition duration-300 transform hover:scale-105"
             >
               Sign In
             </button>
             <button
               onClick={() => router.push("/auth/signup")}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-full text-lg shadow-lg transition duration-300 transform hover:scale-105"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-800 font-bold py-4 px-8 rounded-full text-lg shadow-lg transition duration-300 transform hover:scale-105"
             >
               Get Started
             </button>
@@ -64,8 +64,8 @@ export default function HomePage() {
             {/* Feature 1 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">👨‍🎓</div>
-              <h3 className="text-xl font-bold mb-2">Student Management</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Student Management</h3>
+              <p className="text-black">
                 Efficiently manage student records, enrollment, and academic information
               </p>
             </div>
@@ -73,8 +73,8 @@ export default function HomePage() {
             {/* Feature 2 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-bold mb-2">Class & Subject Management</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Class & Subject Management</h3>
+              <p className="text-black">
                 Organize classes, sections, subjects, and teacher assignments
               </p>
             </div>
@@ -82,8 +82,8 @@ export default function HomePage() {
             {/* Feature 3 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-bold mb-2">Exam & Results</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Exam & Results</h3>
+              <p className="text-black">
                 Track exams, grades, and generate comprehensive result reports
               </p>
             </div>
@@ -91,8 +91,8 @@ export default function HomePage() {
             {/* Feature 4 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">✅</div>
-              <h3 className="text-xl font-bold mb-2">Attendance Tracking</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Attendance Tracking</h3>
+              <p className="text-black">
                 Monitor student attendance with detailed reports and analytics
               </p>
             </div>
@@ -100,8 +100,8 @@ export default function HomePage() {
             {/* Feature 5 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">👨‍🏫</div>
-              <h3 className="text-xl font-bold mb-2">Teacher Management</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Teacher Management</h3>
+              <p className="text-black">
                 Manage teacher profiles, assignments, and schedules efficiently
               </p>
             </div>
@@ -109,8 +109,8 @@ export default function HomePage() {
             {/* Feature 6 */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 shadow-xl">
               <div className="text-4xl mb-4">📈</div>
-              <h3 className="text-xl font-bold mb-2">Analytics Dashboard</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl text-black font-bold mb-2">Analytics Dashboard</h3>
+              <p className="text-black">
                 Get insights with real-time analytics and comprehensive reports
               </p>
             </div>
