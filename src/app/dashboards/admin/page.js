@@ -301,7 +301,7 @@ export default function AdminDashboardPage() {
         </button>
 
         <button
-          onClick={() => router.push("/dashboards/admin/attendance/take")}
+          onClick={() => router.push("/dashboards/admin/attendence/take")}
           className="bg-cyan-500 hover:bg-cyan-600 text-white text-sm py-3 rounded-md transition"
         >
           Take Attendance
