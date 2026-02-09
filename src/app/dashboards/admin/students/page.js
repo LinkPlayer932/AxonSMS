@@ -1,29 +1,46 @@
+
 // "use client";
 // import { useEffect, useState } from "react";
 // import { useRouter } from "next/navigation";
 // import supabase from "@/lib/supabaseClient";
 // import PageHeader from "@/components/shared/PageHeader";
 // import DataTable from "@/components/shared/DataTable";
+// import SearchBar from "@/components/shared/SearchBar";
+// import LoadingSpinner from "@/components/shared/LoadingSpinner";
+// import { filterBySearch } from "@/utils/helpers";
 // import toast from "react-hot-toast";
 
 // export default function StudentListPage() {
 //   const router = useRouter();
 //   const [students, setStudents] = useState([]);
+//   const [filteredStudents, setFilteredStudents] = useState([]);
+//   const [searchTerm, setSearchTerm] = useState("");
 //   const [loading, setLoading] = useState(true);
 
 //   useEffect(() => {
 //     fetchStudents();
 //   }, []);
 
+//   useEffect(() => {
+//     if (searchTerm) {
+//       const filtered = filterBySearch(students, searchTerm, ["name", "email", "rollno"]);
+//       setFilteredStudents(filtered);
+//     } else {
+//       setFilteredStudents(students);
+//     }
+//   }, [searchTerm, students]);
+
 //   const fetchStudents = async () => {
 //     const { data, error } = await supabase
 //       .from("students")
-//       .select("*, classes(name)");
-    
+//       .select("*, classes(name)")
+//       .order("name", { ascending: true });
+
 //     if (error) {
-//       toast.error("Error fetching students");
+//       toast.error("Error fetching students: " + error.message);
 //     } else {
 //       setStudents(data || []);
+//       setFilteredStudents(data || []);
 //     }
 //     setLoading(false);
 //   };
@@ -33,17 +50,17 @@
 //   };
 
 //   const handleDelete = async (student) => {
-//     if (!window.confirm("Are you sure?")) return;
-    
+//     if (!window.confirm(`Are you sure you want to delete ${student.name}?`)) return;
+
 //     const { error } = await supabase
 //       .from("students")
 //       .delete()
 //       .eq("id", student.id);
-    
+
 //     if (error) {
-//       toast.error("Error deleting student");
+//       toast.error("Error deleting student: " + error.message);
 //     } else {
-//       toast.success("Student deleted successfully");
+//       toast.success("Student deleted successfully!");
 //       fetchStudents();
 //     }
 //   };
@@ -59,22 +76,29 @@
 //     { header: "Email", field: "email" },
 //   ];
 
-//   if (loading) return <p>Loading...</p>;
+//   if (loading) return <LoadingSpinner message="Loading students..." />;
 
 //   return (
-//     <div className="p-6">
+//     <div className="p-6 bg-gray-100 min-h-screen">
 //       <PageHeader title="Students">
 //         <button
 //           onClick={() => router.push("/dashboards/admin/students/add")}
-//           className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full"
+//           className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition"
 //         >
 //           + Add Student
 //         </button>
 //       </PageHeader>
 
+//       <SearchBar
+//         value={searchTerm}
+//         onChange={setSearchTerm}
+//         placeholder="Search students by name, roll no, or email..."
+//         className="mb-4"
+//       />
+
 //       <DataTable
 //         columns={columns}
-//         data={students}
+//         data={filteredStudents}
 //         onEdit={handleEdit}
 //         onDelete={handleDelete}
 //       />
@@ -105,7 +129,11 @@ export default function StudentListPage() {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = filterBySearch(students, searchTerm, ["name", "email", "rollno"]);
+      const filtered = filterBySearch(students, searchTerm, [
+        "name",
+        "rollno",
+        "mobile_no",
+      ]);
       setFilteredStudents(filtered);
     } else {
       setFilteredStudents(students);
@@ -132,7 +160,8 @@ export default function StudentListPage() {
   };
 
   const handleDelete = async (student) => {
-    if (!window.confirm(`Are you sure you want to delete ${student.name}?`)) return;
+    if (!window.confirm(`Are you sure you want to delete ${student.name}?`))
+      return;
 
     const { error } = await supabase
       .from("students")
@@ -151,11 +180,12 @@ export default function StudentListPage() {
     { header: "Name", field: "name" },
     { header: "Roll No", field: "rollno" },
     { header: "Gender", field: "gender" },
-    { 
-      header: "Class", 
-      render: (row) => row.classes?.name || "N/A" 
+    {
+      header: "Class",
+      render: (row) => row.classes?.name || "N/A",
     },
-    { header: "Email", field: "email" },
+    { header: "Mobile No", field: "mobile_no" },
+    // { header: "Email", field: "email" },
   ];
 
   if (loading) return <LoadingSpinner message="Loading students..." />;
@@ -174,7 +204,7 @@ export default function StudentListPage() {
       <SearchBar
         value={searchTerm}
         onChange={setSearchTerm}
-        placeholder="Search students by name, roll no, or email..."
+        placeholder="Search by name, roll number, or mobile..."
         className="mb-4"
       />
 

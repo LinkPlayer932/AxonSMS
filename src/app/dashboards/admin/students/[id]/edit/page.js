@@ -1,3 +1,4 @@
+
 // "use client";
 // import { useState, useEffect } from "react";
 // import { useRouter, useParams } from "next/navigation";
@@ -270,8 +271,8 @@ import PageHeader from "@/components/shared/PageHeader";
 import FormCard from "@/components/shared/FormCard";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { GENDER_OPTIONS } from "@/utils/constants";
-import { isValidEmail } from "@/utils/validation";
 import { formatDateForInput } from "@/utils/formatters";
+import { isValidPhone } from "@/utils/validation";
 import toast from "react-hot-toast";
 
 export default function EditStudentPage() {
@@ -285,7 +286,8 @@ export default function EditStudentPage() {
     rollNo: "",
     classId: "",
     gender: "",
-    email: "",
+    mobileNo: "",
+    // email: "",
     address: "",
     dateOfBirth: "",
   });
@@ -326,7 +328,8 @@ export default function EditStudentPage() {
       rollNo: data.rollno || "",
       classId: data.class_id || "",
       gender: data.gender || "",
-      email: data.email || "",
+      mobileNo: data.mobile_no || "",
+      // email: data.email || "",
       address: data.address || "",
       dateOfBirth: data.date_of_birth ? formatDateForInput(data.date_of_birth) : "",
     });
@@ -346,18 +349,24 @@ export default function EditStudentPage() {
       return;
     }
 
-    if (!formData.gender) {
-      toast.error("Please select gender");
-      return;
-    }
-
     if (!formData.classId) {
       toast.error("Please select a class");
       return;
     }
 
-    if (formData.email && !isValidEmail(formData.email)) {
-      toast.error("Invalid email address");
+    if (!formData.gender) {
+      toast.error("Please select gender");
+      return;
+    }
+
+    // Mobile number validation
+    if (!formData.mobileNo.trim()) {
+      toast.error("Mobile number is required");
+      return;
+    }
+
+    if (!isValidPhone(formData.mobileNo)) {
+      toast.error("Please enter a valid mobile number");
       return;
     }
 
@@ -369,7 +378,8 @@ export default function EditStudentPage() {
         rollno: formData.rollNo.trim() || null,
         class_id: formData.classId,
         gender: formData.gender,
-        email: formData.email.trim() || null,
+        mobile_no: formData.mobileNo.trim(),
+        // email: formData.email.trim() || null,
         address: formData.address.trim() || null,
         date_of_birth: formData.dateOfBirth || null,
       })
@@ -387,10 +397,7 @@ export default function EditStudentPage() {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this student?")) return;
 
-    const { error } = await supabase
-      .from("students")
-      .delete()
-      .eq("id", studentId);
+    const { error } = await supabase.from("students").delete().eq("id", studentId);
 
     if (error) {
       toast.error("Error deleting student: " + error.message);
@@ -411,7 +418,9 @@ export default function EditStudentPage() {
         <div className="grid md:grid-cols-2 gap-4">
           {/* Name */}
           <div>
-            <label className="block mb-1 font-semibold">Name *</label>
+            <label className="block mb-1 font-semibold">
+              Student Name <span className="text-red-500">*</span>
+            </label>
             <input
               name="name"
               value={formData.name}
@@ -421,9 +430,9 @@ export default function EditStudentPage() {
             />
           </div>
 
-          {/* Roll No */}
+          {/* Roll Number */}
           <div>
-            <label className="block mb-1 font-semibold">Roll No</label>
+            <label className="block mb-1 font-semibold">Roll Number</label>
             <input
               name="rollNo"
               value={formData.rollNo}
@@ -432,28 +441,11 @@ export default function EditStudentPage() {
             />
           </div>
 
-          {/* Gender */}
-          <div>
-            <label className="block mb-1 font-semibold">Gender *</label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              required
-              className="w-full border px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Select Gender</option>
-              {GENDER_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {/* Class */}
           <div>
-            <label className="block mb-1 font-semibold">Class *</label>
+            <label className="block mb-1 font-semibold">
+              Class <span className="text-red-500">*</span>
+            </label>
             <select
               name="classId"
               value={formData.classId}
@@ -470,9 +462,47 @@ export default function EditStudentPage() {
             </select>
           </div>
 
-          {/* Email */}
+          {/* Gender */}
           <div>
-            <label className="block mb-1 font-semibold">Email</label>
+            <label className="block mb-1 font-semibold">
+              Gender <span className="text-red-500">*</span>
+            </label>
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+              className="w-full border px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select Gender</option>
+              {GENDER_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Mobile Number */}
+          <div>
+            <label className="block mb-1 font-semibold">
+              Mobile Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              name="mobileNo"
+              value={formData.mobileNo}
+              onChange={handleChange}
+              required
+              placeholder="e.g., 03001234567"
+              className="w-full border px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <p className="text-xs text-gray-500 mt-1">Format: 03XXXXXXXXX (11 digits)</p>
+          </div>
+
+          {/* Email (Optional) */}
+          {/* <div>
+            <label className="block mb-1 font-semibold">Email (Optional)</label>
             <input
               type="email"
               name="email"
@@ -480,7 +510,7 @@ export default function EditStudentPage() {
               onChange={handleChange}
               className="w-full border px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-          </div>
+          </div> */}
 
           {/* Date of Birth */}
           <div>
