@@ -1,6 +1,3 @@
-/**
- * Date Formatters
- */
 
 // Format date as "January 1, 2024"
 export const formatDate = (date) => {

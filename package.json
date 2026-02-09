@@ -15,6 +15,7 @@
     "react-dom": "19.2.3",
     "react-hot": "^0.0.1",
     "react-hot-toast": "^2.6.0",
+    "react-icon": "^1.0.0",
     "tailwind": "^4.0.0",
     "toast": "^0.5.4"
   },
