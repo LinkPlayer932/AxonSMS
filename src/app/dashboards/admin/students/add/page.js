@@ -280,18 +280,7 @@ export default function AddStudentPage() {
     }
 
     // Insert student
-    const { error } = await supabase.from("students").insert([
-      {
-        name: formData.name.trim(),
-        rollno: formData.rollNo.trim() || null,
-        class_id: formData.classId,
-        gender: formData.gender,
-        mobile_no: formData.mobileNo.trim(),
-        // email: formData.email.trim() || null,
-        address: formData.address.trim() || null,
-        date_of_birth: formData.dateOfBirth || null,
-      },
-    ]);
+   
 
     if (error) {
       toast.error("Error adding student: " + error.message);

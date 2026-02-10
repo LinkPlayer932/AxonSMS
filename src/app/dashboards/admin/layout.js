@@ -219,7 +219,7 @@ export default function AdminLayout({ children }) {
       key: "students",
       subItems: [
         { name: "All Students", path: "/dashboards/admin/students" },
-        { name: "Add Student", path: "/dashboards/admin/students/add" },
+        // { name: "Add Student", path: "/dashboards/admin/students/add" },
         { name: "Admissions", path: "/dashboards/admin/students/admissions" },
         { name: "Promoted Students", path: "/dashboards/admin/students/promoted" },
       ]
@@ -231,7 +231,7 @@ export default function AdminLayout({ children }) {
       key: "teachers",
       subItems: [
         { name: "All Teachers", path: "/dashboards/admin/teachers" },
-        { name: "Add Teacher", path: "/dashboards/admin/teachers/add" },
+        // { name: "Add Teacher", path: "/dashboards/admin/teachers/add" },
         { name: "Teacher Attendance", path: "/dashboards/admin/teachers/attendance" },
       ]
     },
@@ -260,7 +260,7 @@ export default function AdminLayout({ children }) {
       key: "exams",
       subItems: [
         { name: "All Exams", path: "/dashboards/admin/exams" },
-        { name: "Create Exam", path: "/dashboards/admin/exams/add" },
+        // { name: "Create Exam", path: "/dashboards/admin/exams/add" },
         { name: "Exam Results", path: "/dashboards/admin/exams/results" },
       ]
     },
@@ -270,9 +270,9 @@ export default function AdminLayout({ children }) {
       type: "dropdown",
       key: "attendance",
       subItems: [
-        { name: "Dashboard", path: "/dashboards/admin/attendance" },
-        { name: "Take Attendance", path: "/dashboards/admin/attendance/take" },
-        { name: "View Reports", path: "/dashboards/admin/attendance/reports" },
+        { name: "Attendence", path: "/dashboards/admin/attendence" },
+        { name: "Take Attendence", path: "/dashboards/admin/attendence/take" },
+        { name: "View Reports", path: "/dashboards/admin/attendence/reports" },
       ]
     },
     {
